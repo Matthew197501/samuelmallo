@@ -1,0 +1,36 @@
+---
+interface Props {
+  navigation: Array<{ label: string; href: string }>;
+}
+
+const { navigation } = Astro.props;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<nav aria-label="Main navigation">
+  <ul class="cyber-nav-list">
+    {navigation.map((item) => {
+      const itemPath = item.href.replace(/\/$/, "") || "/";
+      const isActive =
+        itemPath === "/"
+          ? currentPath === "/"
+          : currentPath === itemPath ||
+            currentPath.startsWith(`${itemPath}/`);
+
+      return (
+        <li>
+          <a
+            href={item.href}
+            aria-current={isActive ? "page" : undefined}
+            class:list={[
+              "cyber-nav-link",
+              isActive && "cyber-nav-active",
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>

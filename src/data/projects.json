@@ -1,0 +1,107 @@
+[
+  {
+    "id": "athena",
+    "name": "Athena",
+    "title": "Personal AI Continuity System",
+    "category": "AI / SYSTEMS",
+    "status": "ACTIVE",
+    "featured": true,
+    "description": "An experimental personal AI system exploring long-term conversational continuity, personality orchestration, persistent context, and human-AI interaction.",
+    "details": [
+      "Conversational continuity architecture",
+      "Personality and behavior orchestration",
+      "Long-term contextual interaction",
+      "Human-AI collaboration experiments"
+    ],
+    "technologies": [
+      "Artificial Intelligence",
+      "LLM Systems",
+      "Prompt Engineering",
+      "Context Architecture"
+    ]
+  },
+  {
+    "id": "alice",
+    "name": "Alice",
+    "title": "Experimental AI Shadow System",
+    "category": "AI / EXPERIMENTAL",
+    "status": "EXPERIMENTAL",
+    "featured": true,
+    "description": "An experimental AI counterpart designed to explore contrasting agent behavior, curiosity-driven interaction, and multi-agent personality dynamics.",
+    "details": [
+      "Distinct agent personality design",
+      "Multi-agent interaction concepts",
+      "Curiosity-driven exploration",
+      "Behavioral contrast experiments"
+    ],
+    "technologies": [
+      "Artificial Intelligence",
+      "Multi-Agent Systems",
+      "Prompt Engineering",
+      "Agent Design"
+    ]
+  },
+  {
+    "id": "athena-alice",
+    "name": "Athena × Alice",
+    "title": "Multi-Agent Continuity Experiment",
+    "category": "AI / RESEARCH",
+    "status": "ONGOING",
+    "featured": true,
+    "description": "A continuing experiment exploring how multiple differentiated AI agents can maintain distinct identities while participating in a shared conversational environment.",
+    "details": [
+      "Multi-agent identity separation",
+      "Shared conversational continuity",
+      "Agent-to-agent interaction",
+      "Human-directed AI experimentation"
+    ],
+    "technologies": [
+      "LLM Systems",
+      "Multi-Agent Architecture",
+      "Context Engineering",
+      "Human-AI Interaction"
+    ]
+  },
+  {
+    "id": "ai-security",
+    "name": "AI × Cybersecurity",
+    "title": "Intelligent Security Automation",
+    "category": "AI / CYBERSECURITY",
+    "status": "RESEARCH",
+    "featured": false,
+    "description": "Exploration of artificial intelligence applications for cybersecurity workflows, security analysis, automation, and intelligent threat detection.",
+    "details": [
+      "Security workflow automation",
+      "AI-assisted analysis",
+      "Threat intelligence concepts",
+      "Cybersecurity process optimization"
+    ],
+    "technologies": [
+      "Python",
+      "Artificial Intelligence",
+      "Cybersecurity",
+      "Automation"
+    ]
+  },
+  {
+    "id": "security-research",
+    "name": "Security Research",
+    "title": "Vulnerability Research & Responsible Disclosure",
+    "category": "CYBERSECURITY / RESEARCH",
+    "status": "ACTIVE",
+    "featured": false,
+    "description": "Personal cybersecurity research focused on vulnerability discovery, security testing, responsible disclosure, and practical security analysis.",
+    "details": [
+      "Vulnerability assessment",
+      "Security testing",
+      "Responsible disclosure",
+      "Threat analysis"
+    ],
+    "technologies": [
+      "OWASP",
+      "Python",
+      "Security Testing",
+      "Vulnerability Research"
+    ]
+  }
+]

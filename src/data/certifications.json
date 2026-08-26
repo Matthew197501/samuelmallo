@@ -1,0 +1,30 @@
+[
+  {
+    "name": "IBM Cybersecurity Analyst Professional Certificate",
+    "issuer": "IBM",
+    "date": "July 2024",
+    "credentialId": "bbe98feb-aaae-48fb-a2f4-424c0e835833",
+    "verificationUrl": "https://www.credly.com/earner/earned/badge/bbe98feb-aaae-48fb-a2f4-424c0e835833"
+  },
+  {
+    "name": "IBM AI Engineering Professional Certificate (V2)",
+    "issuer": "IBM",
+    "date": "July 2024",
+    "credentialId": "5c69a799-c0d1-4565-9468-8850a48e5546",
+    "verificationUrl": "https://www.credly.com/earner/earned/badge/5c69a799-c0d1-4565-9468-8850a48e5546"
+  },
+  {
+    "name": "TESDA Computer Systems Servicing NC II",
+    "issuer": "TESDA (Technical Education and Skills Development Authority - Philippines)",
+    "date": "August 2022",
+    "credentialId": "22021502037025",
+    "verificationUrl": "https://www.tesda.gov.ph/Rwac/Rwac2017"
+  },
+  {
+    "name": "NSE 1 — Network Security Associate Certification",
+    "issuer": "Fortinet",
+    "date": "2025",
+    "credentialId": "YZ74zbBn7I",
+    "verificationUrl": "https://training.fortinet.com/mod/customcert/verify_certificate.php"
+  }
+]

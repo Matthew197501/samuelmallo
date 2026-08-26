@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import certificationData from "../data/certifications.json";
+import CertificationCard from "../components/sections/CertificationCard.astro";
+---
+
+<BaseLayout title="Certifications">
+  <main class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-4xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">Certifications</h1>
+
+      <p class="text-xl text-slate-600 dark:text-slate-400 mb-12">
+        Professional certifications and credentials earned.
+      </p>
+
+      <div class="space-y-8">
+        {certificationData.map((cert, index) => (
+          <CertificationCard
+            name={cert.name}
+            issuer={cert.issuer}
+            date={cert.date}
+            credentialId={cert.credentialId}
+            verificationUrl={cert.verificationUrl}
+            index={index + 1}
+          />
+        ))}
+      </div>
+    </div>
+  </main>
+</BaseLayout>

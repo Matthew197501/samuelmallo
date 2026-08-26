@@ -1,0 +1,191 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="About Samuel Mallo">
+  <main class="min-h-screen bg-black py-20 md:py-28">
+    <div class="container mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="mb-16">
+        <p class="mb-4 font-mono text-xs font-semibold uppercase tracking-[0.25em] text-green-500">
+          // ABOUT
+        </p>
+
+        <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+          About Samuel Mallo
+        </h1>
+
+        <div class="mt-6 h-px w-24 bg-green-500"></div>
+      </div>
+
+      <!-- Introduction -->
+      <article class="space-y-12">
+
+        <section>
+          <p class="text-xl leading-9 text-zinc-300">
+            IT Security and Systems Technician with 4+ years of hands-on
+            experience in cybersecurity threat monitoring, vulnerability
+            assessment, endpoint security, and component-level hardware repair.
+          </p>
+
+          <p class="mt-6 leading-8 text-zinc-400">
+            Samuel Mallo is an IBM Certified Cybersecurity Analyst and IBM
+            Certified AI Engineer, holding a TESDA Computer Systems Servicing
+            NC II certification. His expertise spans incident response, threat
+            intelligence, forensic data recovery, secure workstation
+            deployment, and network fault diagnostics.
+          </p>
+
+          <p class="mt-6 leading-8 text-zinc-400">
+            Beyond technical skills, Samuel is a TESDA Gold Medalist in Graphic
+            Design & Technology, bringing a unique combination of cybersecurity
+            analysis, hardware technician support, and digital media production
+            to his professional work.
+          </p>
+        </section>
+
+        <!-- Professional Background -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // BACKGROUND
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Professional Background
+          </h2>
+
+          <p class="mt-5 leading-8 text-zinc-400">
+            Samuel's career began with hands-on technical support and hardware
+            assembly, eventually evolving into specialized roles in IT security
+            and systems support. He has worked across multiple industries
+            including media broadcasting, educational institutions, and
+            corporate IT environments.
+          </p>
+        </section>
+
+        <!-- Technical Interests -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // INTERESTS
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Technical Interests
+          </h2>
+
+          <ul class="mt-6 space-y-4">
+            {[
+              "Artificial Intelligence and Machine Learning applications in cybersecurity",
+              "Threat intelligence and incident response automation",
+              "Computer vision and image processing",
+              "Secure system architecture and hardening",
+            ].map((interest) => (
+              <li class="flex gap-3 leading-7 text-zinc-400">
+                <span class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500"></span>
+                <span>{interest}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Career Direction -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // DIRECTION
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Career Direction
+          </h2>
+
+          <p class="mt-5 leading-8 text-zinc-400">
+            Samuel is currently pursuing his Bachelor of Science in Computer
+            Science at the University of the People while working full-time in
+            IT security. His long-term goal is to bridge artificial intelligence
+            and cybersecurity, developing intelligent systems that can
+            proactively detect and respond to threats.
+          </p>
+        </section>
+
+        <!-- Education -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // EDUCATION
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Education
+          </h2>
+
+          <ul class="mt-6 space-y-6">
+            <li class="border-l-2 border-green-500/40 pl-5">
+              <strong class="block text-white">
+                Bachelor of Science in Computer Science
+              </strong>
+              <span class="text-zinc-500">(In Progress)</span>
+              <p class="mt-1 text-sm text-zinc-500">
+                University of the People | 2023 - Present
+              </p>
+            </li>
+
+            <li class="border-l-2 border-green-500/40 pl-5">
+              <strong class="block text-white">
+                Senior High School Diploma - Information & Communications
+                Technology Track
+              </strong>
+              <p class="mt-1 text-sm text-zinc-500">
+                Vicente D. Trinidad National High School, Philippines |
+                Graduated 2023
+              </p>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Languages -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // LANGUAGES
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Languages
+          </h2>
+
+          <ul class="mt-6 space-y-4 text-zinc-400">
+            <li>
+              <strong class="text-white">English:</strong>
+              C2 Proficient, EF SET Certified (76/100)
+            </li>
+            <li>
+              <strong class="text-white">Filipino:</strong>
+              Native Proficiency
+            </li>
+          </ul>
+        </section>
+
+        <!-- Academic Courses -->
+        <section>
+          <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-red-500">
+            // COURSES
+          </p>
+
+          <h2 class="text-2xl font-bold text-white md:text-3xl">
+            Academic Courses
+          </h2>
+
+          <div class="mt-6 cyber-card p-6">
+            <h3 class="font-semibold text-white">
+              CS50's Computer Science for Business Professionals
+            </h3>
+
+            <p class="mt-2 text-sm text-zinc-500">
+              Harvard University (HarvardX) | 2020
+            </p>
+          </div>
+        </section>
+
+      </article>
+    </div>
+  </main>
+</BaseLayout>

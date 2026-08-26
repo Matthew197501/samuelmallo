@@ -1,0 +1,119 @@
+---
+import Navigation from "./Navigation.astro";
+
+interface Props {
+  navigation: Array<{ label: string; href: string }>;
+}
+
+const { navigation } = Astro.props;
+---
+
+<header class="cyber-header sticky top-0 z-50">
+  <nav class="container mx-auto px-4" aria-label="Main navigation">
+    <div class="flex min-h-16 items-center justify-between gap-6">
+
+      <a
+        href="/"
+        class="cyber-brand"
+        aria-label="Samuel Mallo home"
+      >
+        <span class="cyber-prompt">&gt;_</span>
+        <span>SAMUEL MALLO</span>
+      </a>
+
+      <div class="hidden md:block">
+        <Navigation navigation={navigation} />
+      </div>
+
+      <button
+        id="mobile-menu-button"
+        class="cyber-menu-button md:hidden"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        type="button"
+      >
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path
+            id="mobile-menu-icon"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <div
+      id="mobile-menu"
+      class="cyber-mobile-menu hidden md:hidden"
+      aria-hidden="true"
+    >
+      <ul class="grid gap-1 text-sm font-medium">
+        {navigation.map((item) => {
+          const itemPath = item.href.replace(/\/$/, "") || "/";
+          const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+          const isActive =
+            itemPath === "/"
+              ? currentPath === "/"
+              : currentPath === itemPath ||
+                currentPath.startsWith(`${itemPath}/`);
+
+          return (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive ? "page" : undefined}
+                class:list={[
+                  "cyber-mobile-link",
+                  isActive && "cyber-mobile-active",
+                ]}
+              >
+                <span>&gt;</span>
+                {item.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(
+    "#mobile-menu-button"
+  );
+  const menu = document.querySelector<HTMLElement>("#mobile-menu");
+  const icon = document.querySelector<SVGPathElement>("#mobile-menu-icon");
+
+  button?.addEventListener("click", () => {
+    if (!menu) return;
+
+    const willOpen = menu.classList.contains("hidden");
+
+    menu.classList.toggle("hidden", !willOpen);
+    menu.setAttribute("aria-hidden", String(!willOpen));
+    button.setAttribute("aria-expanded", String(willOpen));
+    button.setAttribute(
+      "aria-label",
+      willOpen ? "Close navigation menu" : "Open navigation menu"
+    );
+
+    if (icon) {
+      icon.setAttribute(
+        "d",
+        willOpen
+          ? "M6 6l12 12M18 6L6 18"
+          : "M4 6h16M4 12h16M4 18h16"
+      );
+    }
+  });
+</script>

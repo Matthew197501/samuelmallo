@@ -1,0 +1,85 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SkillCategory from "../components/sections/SkillCategory.astro";
+
+const skills = [
+  {
+    category: "Cybersecurity & Threat Analysis",
+    skills: [
+      "Incident Response",
+      "Vulnerability Assessment & Remediation",
+      "Threat Intelligence",
+      "Malware Analysis",
+      "Endpoint Security",
+      "Security Patch Management",
+      "Forensic Data Recovery",
+    ],
+  },
+  {
+    category: "Hardware & Systems Engineering",
+    skills: [
+      "Custom Workstation Assembly",
+      "Component-Level Diagnostics & Repair",
+      "Secure OS Imaging",
+      "Hardware Lifecycle Management",
+      "Diagnostic Optimization",
+    ],
+  },
+  {
+    category: "Infrastructure & Network Support",
+    skills: [
+      "CCTV Installation",
+      "Device Fleet Deployment",
+      "Network Fault Diagnostics & Troubleshooting",
+      "Printer/Peripheral Maintenance & Repair",
+      "Preventative Maintenance",
+    ],
+  },
+  {
+    category: "Programming & Automation",
+    skills: [
+      "Python (Data Analysis, Machine Learning & Security Automation)",
+      "Remote Administration Tools",
+      "AI Productivity Frameworks",
+    ],
+  },
+  {
+    category: "Software & Productivity",
+    skills: [
+      "Windows OS",
+      "Microsoft Office Suite",
+      "System Imaging & Recovery Software",
+    ],
+  },
+  {
+    category: "Creative & Technical Media",
+    skills: [
+      "Adobe Photoshop",
+      "Computer Vision & Image Processing",
+      "Digital Asset Editing",
+      "Technical Layout Design",
+    ],
+  },
+];
+---
+
+<BaseLayout title="Skills">
+  <main class="py-16 md:py-24">
+    <div class="container mx-auto px-4 max-w-6xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8">Technical Skills</h1>
+
+      <p class="text-xl text-slate-600 dark:text-slate-400 mb-12 max-w-3xl">
+        Comprehensive technical expertise spanning cybersecurity, hardware engineering, infrastructure support, and creative media.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        {skills.map((category, index) => (
+          <SkillCategory
+            category={category.category}
+            skills={category.skills}
+          />
+        ))}
+      </div>
+    </div>
+  </main>
+</BaseLayout>

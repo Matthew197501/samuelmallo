@@ -1,0 +1,100 @@
+---
+interface Props {
+  organization: string;
+  position: string;
+  startDate: string;
+  endDate: string;
+  responsibilities: string[];
+  technologies?: string[];
+}
+
+const {
+  organization,
+  position,
+  startDate,
+  endDate,
+  responsibilities,
+  technologies = [],
+} = Astro.props;
+---
+
+<article class="cyber-card group relative overflow-hidden p-6 md:p-8">
+  <!-- Security accent -->
+  <div
+    class="absolute left-0 top-0 h-full w-0.5 bg-gradient-to-b from-green-400 via-green-500 to-red-600 opacity-70"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Terminal corner -->
+  <div
+    class="absolute right-5 top-4 font-mono text-[10px] tracking-widest text-zinc-700 transition-colors group-hover:text-green-500/50"
+    aria-hidden="true"
+  >
+    EXP//01
+  </div>
+
+  <div
+    class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between md:gap-6"
+  >
+    <div>
+      <p class="cyber-label mb-2">
+        EXPERIENCE
+      </p>
+
+      <h3 class="text-xl font-bold text-white md:text-2xl">
+        {position}
+      </h3>
+
+      <p class="mt-1 font-mono text-sm font-medium text-green-400">
+        <span class="text-green-600">&gt;</span>
+        {organization}
+      </p>
+    </div>
+
+    <div
+      class="shrink-0 rounded-md border border-zinc-800 bg-black/50 px-3 py-2 font-mono text-xs text-zinc-500"
+    >
+      <span class="text-red-500">[</span>
+      <time>{startDate}</time>
+      <span class="mx-1 text-zinc-700">—</span>
+      <time>{endDate}</time>
+      <span class="text-red-500">]</span>
+    </div>
+  </div>
+
+  <div class="my-6 h-px bg-gradient-to-r from-green-500/20 via-zinc-800 to-transparent"></div>
+
+  <ul class="space-y-3 text-zinc-400">
+    {responsibilities.map((responsibility) => (
+      <li class="flex gap-3 leading-7">
+        <span
+          class="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"
+          aria-hidden="true"
+        ></span>
+
+        <span>{responsibility}</span>
+      </li>
+    ))}
+  </ul>
+
+  {technologies.length > 0 && (
+    <div class="mt-7">
+      <p class="mb-3 font-mono text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-600">
+        // TECH_STACK
+      </p>
+
+      <ul
+        class="flex flex-wrap gap-2"
+        aria-label="Technologies and tools"
+      >
+        {technologies.map((tech) => (
+          <li
+            class="rounded-md border border-zinc-800 bg-black/60 px-3 py-1.5 font-mono text-xs text-zinc-400 transition-all duration-200 hover:border-green-500/50 hover:bg-green-500/5 hover:text-green-400"
+          >
+            {tech}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
+</article>

@@ -1,0 +1,229 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import AccomplishmentCard from "../components/sections/AccomplishmentCard.astro";
+
+const accomplishments = (await getCollection("accomplishments"))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.date?.getTime() ?? 0;
+    const dateB = b.data.date?.getTime() ?? 0;
+    return dateB - dateA;
+  });
+
+const featured = accomplishments.filter(
+  (item) => item.data.featured
+);
+
+const standard = accomplishments.filter(
+  (item) => !item.data.featured
+);
+---
+
+<BaseLayout
+  title="Accomplishments | Samuel Mallo"
+  description="Professional accomplishments, certifications, awards, competitions, and recognitions of Samuel Mallo."
+>
+  <main>
+
+    <!-- HEADER -->
+    <section class="relative overflow-hidden border-b border-red-500/10 bg-black">
+      <div class="absolute inset-0 cyber-grid opacity-20"></div>
+
+      <div
+        class="pointer-events-none absolute left-1/2 top-0 h-96 w-[700px] -translate-x-1/2 rounded-full bg-red-600/10 blur-3xl"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative container mx-auto px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+
+        <div class="max-w-4xl">
+
+          <div class="mb-6 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em] text-green-400">
+            <span class="h-2 w-2 animate-pulse rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"></span>
+            ARCHIVE ONLINE
+          </div>
+
+          <p class="cyber-label mb-4">
+            // ACCOMPLISHMENTS_DATABASE
+          </p>
+
+          <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            Recognition,
+            <span class="text-red-500">achievements</span>,
+            and credentials.
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+            A record of professional certifications, national credentials,
+            technical competition achievements, awards, and security
+            recognition earned throughout Samuel Mallo's technical career.
+          </p>
+
+          <!-- TERMINAL STATUS -->
+          <div class="mt-8 max-w-2xl border border-zinc-800 bg-zinc-950/80 p-5 font-mono text-xs">
+
+            <div class="flex flex-wrap gap-x-8 gap-y-2 text-zinc-500">
+
+              <span>
+                <span class="text-red-500">&gt;</span>
+                RECORDS:
+                <span class="text-zinc-300">{accomplishments.length}</span>
+              </span>
+
+              <span>
+                <span class="text-red-500">&gt;</span>
+                FEATURED:
+                <span class="text-zinc-300">{featured.length}</span>
+              </span>
+
+              <span>
+                <span class="text-red-500">&gt;</span>
+                STATUS:
+                <span class="text-green-400">VERIFIED</span>
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FEATURED RECORDS -->
+    <section class="border-b border-zinc-900 bg-[#080808] py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mb-12">
+          <p class="cyber-label mb-3">
+            // PRIORITY_RECORDS
+          </p>
+
+          <h2 class="text-3xl font-bold text-white md:text-4xl">
+            Selected accomplishments
+          </h2>
+
+          <p class="mt-4 max-w-2xl text-zinc-500">
+            Highlighted achievements and recognitions from Samuel's
+            professional and technical development.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+
+          {featured.map((accomplishment, index) => (
+            <div
+              class:list={[
+                index === 0 && "md:col-span-2",
+              ]}
+            >
+              <AccomplishmentCard
+                title={accomplishment.data.title}
+                description={accomplishment.data.description}
+                issuer={accomplishment.data.issuer}
+                category={accomplishment.data.category}
+                date={accomplishment.data.date}
+                featured={true}
+                index={index + 1}
+              />
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- COMPLETE ARCHIVE -->
+    <section class="bg-black py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+
+          <div>
+            <p class="cyber-label mb-3">
+              // COMPLETE_ARCHIVE
+            </p>
+
+            <h2 class="text-3xl font-bold text-white md:text-4xl">
+              Professional record
+            </h2>
+          </div>
+
+          <div class="font-mono text-xs text-zinc-600">
+            TOTAL_RECORDS: {accomplishments.length}
+          </div>
+
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+
+          {standard.map((accomplishment, index) => (
+            <AccomplishmentCard
+              title={accomplishment.data.title}
+              description={accomplishment.data.description}
+              issuer={accomplishment.data.issuer}
+              category={accomplishment.data.category}
+              date={accomplishment.data.date}
+              featured={false}
+              index={featured.length + index + 1}
+            />
+          ))}
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER CTA -->
+    <section class="relative overflow-hidden border-t border-zinc-900 bg-[#080808] py-24">
+
+      <div
+        class="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-red-600/10 blur-3xl"
+      ></div>
+
+      <div class="relative container mx-auto px-4 text-center">
+
+        <p class="cyber-label mb-4">
+          // END_OF_RECORD
+        </p>
+
+        <h2 class="mx-auto max-w-3xl text-3xl font-bold text-white md:text-4xl">
+          A technical career built through
+          <span class="text-red-500">continuous development.</span>
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-2xl leading-7 text-zinc-500">
+          Certifications, competition achievements, professional recognition,
+          and security research form part of Samuel Mallo's ongoing technical
+          development.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center gap-3">
+
+          <a
+            href="/certifications"
+            class="cyber-button"
+          >
+            View Certifications
+          </a>
+
+          <a
+            href="/experience"
+            class="cyber-button-outline"
+          >
+            View Experience
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+</BaseLayout>

@@ -1,0 +1,60 @@
+[
+  {
+    "organization": "Star Digital Network Philippines",
+    "position": "IT Security & Systems Support Officer",
+    "startDate": "August 2023",
+    "endDate": "Present",
+    "responsibilities": [
+      "Execute routine threat identification, patch management, and security audits across 25+ multimedia workstations, reducing system vulnerabilities by an estimated 35%.",
+      "Conduct hardware diagnostics, physical repairs, and secure OS imaging across enterprise endpoints while maintaining 100% data integrity through automated backup frameworks.",
+      "Leverage Adobe Photoshop and digital design suites to produce technical layouts and broadcast-ready media assets for corporate media workflows."
+    ],
+    "technologies": ["Python", "Adobe Photoshop", "Windows OS", "Security Audits"]
+  },
+  {
+    "organization": "Department of Agriculture (DZDA Radio) - Philippines",
+    "position": "Broadcasting Technician",
+    "startDate": "April 2022",
+    "endDate": "April 2023",
+    "responsibilities": [
+      "Maintained, calibrated, and repaired broadcast transmission equipment and integrated computer networks, maintaining 99.5% compliance with regulatory standards.",
+      "Diagnosed and resolved real-time network, audio, and hardware bottlenecks during live transmissions, reducing on-air technical downtime."
+    ],
+    "technologies": ["Network Diagnostics", "Broadcast Equipment", "Hardware Maintenance"]
+  },
+  {
+    "organization": "Vicente D. Trinidad National High School - Philippines",
+    "position": "Computer & Network Technician",
+    "startDate": "March 2021",
+    "endDate": "March 2022",
+    "responsibilities": [
+      "Managed hardware lifecycle, physical security, and secure OS imaging for 50+ computer laboratory endpoints and staff workstations.",
+      "Deployed baseline network security measures, resolved system performance bottlenecks, and trained 30+ academic staff on cybersecurity threat awareness and preventative maintenance.",
+      "Maintained a 95%+ operational rate across printers, peripherals, and network infrastructure through structured preventative maintenance schedules."
+    ],
+    "technologies": ["Windows OS", "Network Security", "System Imaging", "Hardware Lifecycle Management"]
+  },
+  {
+    "organization": "Octagon Computer Store - Philippines",
+    "position": "IT Staff / Bench Service Technician",
+    "startDate": "April 2019",
+    "endDate": "June 2020",
+    "responsibilities": [
+      "Assembled and configured 100+ custom consumer and commercial workstations to exact hardware specifications.",
+      "Executed hardware diagnostic tests, malware remediation, and forensic data recovery on customer devices with a high first-time fix rate.",
+      "Communicated technical findings and post-repair preventative care strategies clearly to non-technical clientele."
+    ],
+    "technologies": ["Hardware Assembly", "Hardware Diagnostics", "Malware Remediation", "Forensic Data Recovery"]
+  },
+  {
+    "organization": "Independent Services - Philippines",
+    "position": "Freelance IT Technician",
+    "startDate": "June 2018",
+    "endDate": "December 2019",
+    "responsibilities": [
+      "Provided end-to-end technical support including multi-channel CCTV installation, mobile device repair, small-office network deployment, and data recovery.",
+      "Created digital media, technical graphic assets, and photo/video edits for local community and academic clients."
+    ],
+    "technologies": ["CCTV Installation", "Network Deployment", "Digital Media", "Data Recovery"]
+  }
+]

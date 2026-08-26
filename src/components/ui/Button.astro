@@ -1,0 +1,55 @@
+---
+interface Props {
+  href?: string;
+  variant?: "primary" | "secondary" | "outline" | "ghost";
+  size?: "sm" | "md" | "lg";
+  type?: "button" | "submit" | "reset";
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  type = "button",
+  class: className = "",
+  ariaLabel,
+} = Astro.props;
+
+const baseStyles =
+  "inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 focus-visible:ring-offset-black";
+
+const variantStyles = {
+  primary:
+    "bg-red-600 text-white border border-red-600 hover:bg-red-700 hover:border-red-500 hover:shadow-[0_0_24px_rgba(220,38,38,0.25)]",
+
+  secondary:
+    "bg-zinc-900 text-white border border-zinc-800 hover:border-red-600 hover:bg-zinc-800",
+
+  outline:
+    "border border-zinc-700 bg-transparent text-zinc-200 hover:border-red-500 hover:bg-red-950/20 hover:text-white",
+
+  ghost:
+    "text-zinc-400 hover:bg-zinc-900 hover:text-red-400",
+};
+
+const sizeStyles = {
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-4 py-2.5 text-sm",
+  lg: "px-6 py-3 text-base",
+};
+
+const combinedStyles =
+  `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+---
+
+{href ? (
+  <a href={href} class={combinedStyles} aria-label={ariaLabel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={combinedStyles} aria-label={ariaLabel}>
+    <slot />
+  </button>
+)}

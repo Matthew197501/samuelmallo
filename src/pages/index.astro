@@ -1,0 +1,415 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import ExperienceCard from "../components/sections/ExperienceCard.astro";
+import SkillCategory from "../components/sections/SkillCategory.astro";
+import CertificationCard from "../components/sections/CertificationCard.astro";
+import experienceData from "../data/experience.json";
+import certifications from "../data/certifications.json";
+
+const skills = [
+  {
+    category: "Cybersecurity & Threat Analysis",
+    skills: [
+      "Incident Response",
+      "Vulnerability Assessment & Remediation",
+      "Threat Intelligence",
+      "Malware Analysis",
+      "Endpoint Security",
+      "Security Patch Management",
+      "Forensic Data Recovery",
+    ],
+  },
+  {
+    category: "Hardware & Systems Engineering",
+    skills: [
+      "Custom Workstation Assembly",
+      "Component-Level Diagnostics & Repair",
+      "Secure OS Imaging",
+      "Hardware Lifecycle Management",
+      "Diagnostic Optimization",
+    ],
+  },
+  {
+    category: "Infrastructure & Network Support",
+    skills: [
+      "CCTV Installation",
+      "Device Fleet Deployment",
+      "Network Fault Diagnostics & Troubleshooting",
+      "Printer/Peripheral Maintenance & Repair",
+      "Preventative Maintenance",
+    ],
+  },
+  {
+    category: "Programming & Automation",
+    skills: [
+      "Python (Data Analysis, Machine Learning & Security Automation)",
+      "Remote Administration Tools",
+      "AI Productivity Frameworks",
+    ],
+  },
+  {
+    category: "Software & Productivity",
+    skills: [
+      "Windows OS",
+      "Microsoft Office Suite",
+      "System Imaging & Recovery Software",
+    ],
+  },
+  {
+    category: "Creative & Technical Media",
+    skills: [
+      "Adobe Photoshop",
+      "Computer Vision & Image Processing",
+      "Digital Asset Editing",
+      "Technical Layout Design",
+    ],
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <main>
+
+    <Hero />
+
+    <!-- SIGNAL STRIP -->
+    <section
+      class="border-b border-zinc-900 bg-black"
+      aria-label="Professional focus"
+    >
+      <div class="container mx-auto grid grid-cols-2 divide-x divide-zinc-900 md:grid-cols-4">
+
+        <div class="px-6 py-7 text-center">
+          <p class="font-mono text-2xl font-bold text-red-500">AI</p>
+          <p class="mt-1 text-xs uppercase tracking-widest text-zinc-600">
+            Engineering
+          </p>
+        </div>
+
+        <div class="px-6 py-7 text-center">
+          <p class="font-mono text-2xl font-bold text-red-500">CYBER</p>
+          <p class="mt-1 text-xs uppercase tracking-widest text-zinc-600">
+            Security
+          </p>
+        </div>
+
+        <div class="px-6 py-7 text-center">
+          <p class="font-mono text-2xl font-bold text-red-500">NASA</p>
+          <p class="mt-1 text-xs uppercase tracking-widest text-zinc-600">
+            Recognition
+          </p>
+        </div>
+
+        <div class="px-6 py-7 text-center">
+          <p class="font-mono text-2xl font-bold text-red-500">IBM</p>
+          <p class="mt-1 text-xs uppercase tracking-widest text-zinc-600">
+            Professional Certifications
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT SNAPSHOT -->
+    <section class="border-b border-zinc-900 bg-[#080808] py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="grid gap-12 md:grid-cols-2 md:items-center">
+
+          <div>
+            <p class="cyber-label mb-4">// ABOUT</p>
+
+            <h2 class="max-w-xl text-3xl font-bold text-white md:text-4xl">
+              Engineering technology with a focus on
+              <span class="text-red-500">intelligence and security.</span>
+            </h2>
+          </div>
+
+          <div class="max-w-xl">
+            <p class="leading-8 text-zinc-400">
+              Samuel Mallo is an AI Engineer and Cybersecurity Analyst with
+              experience spanning security, systems engineering, and practical
+              technical problem-solving.
+            </p>
+
+            <p class="mt-5 leading-8 text-zinc-500">
+              His professional development combines formal certifications,
+              technical experience, cybersecurity research, and recognition
+              for responsible security reporting.
+            </p>
+
+            <a
+              href="/about"
+              class="mt-6 inline-flex items-center font-semibold text-red-500 hover:text-red-400"
+            >
+              Learn more about Samuel
+              <span class="ml-2">→</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- RECOGNITION -->
+    <section class="border-b border-zinc-900 bg-black py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p class="cyber-label mb-3">// RECOGNITION</p>
+
+            <h2 class="text-3xl font-bold text-white md:text-4xl">
+              Selected accomplishments
+            </h2>
+          </div>
+
+          <a
+            href="/accomplishments"
+            class="hidden text-sm font-semibold text-red-500 hover:text-red-400 sm:block"
+          >
+            View all accomplishments →
+          </a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {[
+            {
+              title: "NASA Vulnerability Disclosure",
+              description:
+                "Recognition from NASA for identifying and responsibly reporting a security vulnerability through NASA's Vulnerability Disclosure Policy.",
+              meta: "NASA · 2024",
+            },
+            {
+              title: "NSE 1 — Network Security Associate",
+              description:
+                "Foundational network security certification demonstrating knowledge of core cybersecurity and network security concepts.",
+              meta: "Fortinet · 2025",
+            },
+          ].map((item, index) => (
+            <article class="cyber-card p-7">
+              <div class="flex items-start justify-between gap-4">
+                <span class="cyber-label">
+                  {index === 0 ? "Recognition" : "Certification"}
+                </span>
+
+                <span class="font-mono text-xs text-zinc-600">
+                  0{index + 1}
+                </span>
+              </div>
+
+              <h3 class="mt-6 text-xl font-bold text-white">
+                {item.title}
+              </h3>
+
+              <p class="mt-2 font-medium text-red-500">
+                {item.meta}
+              </p>
+
+              <p class="mt-5 leading-7 text-zinc-400">
+                {item.description}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div class="mt-8 sm:hidden">
+          <a
+            href="/accomplishments"
+            class="text-sm font-semibold text-red-500"
+          >
+            View all accomplishments →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="border-b border-zinc-900 bg-[#080808] py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mx-auto mb-12 max-w-3xl text-center">
+          <p class="cyber-label mb-3">// EXPERTISE</p>
+
+          <h2 class="text-3xl font-bold text-white md:text-4xl">
+            Technical areas of focus
+          </h2>
+
+          <p class="mt-4 text-zinc-500">
+            A multidisciplinary technical foundation spanning AI,
+            cybersecurity, and systems engineering.
+          </p>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {skills.slice(0, 3).map((category) => (
+            <SkillCategory
+              category={category.category}
+              skills={category.skills}
+            />
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <a
+            href="/skills"
+            class="font-semibold text-red-500 hover:text-red-400"
+          >
+            Explore all skills →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="border-b border-zinc-900 bg-black py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p class="cyber-label mb-3">// EXPERIENCE</p>
+
+            <h2 class="text-3xl font-bold text-white md:text-4xl">
+              Professional experience
+            </h2>
+          </div>
+
+          <a
+            href="/experience"
+            class="hidden text-sm font-semibold text-red-500 hover:text-red-400 sm:block"
+          >
+            View full experience →
+          </a>
+        </div>
+
+        <div class="mx-auto max-w-5xl space-y-6">
+          {experienceData.slice(0, 2).map((exp) => (
+            <ExperienceCard
+              organization={exp.organization}
+              position={exp.position}
+              startDate={exp.startDate}
+              endDate={exp.endDate}
+              responsibilities={exp.responsibilities}
+              technologies={exp.technologies}
+            />
+          ))}
+        </div>
+
+        <div class="mt-8 sm:hidden">
+          <a
+            href="/experience"
+            class="text-sm font-semibold text-red-500"
+          >
+            View full experience →
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="border-b border-zinc-900 bg-[#080808] py-24">
+      <div class="container mx-auto px-4">
+
+        <div class="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p class="cyber-label mb-3">// CREDENTIALS</p>
+
+            <h2 class="text-3xl font-bold text-white md:text-4xl">
+              Professional certifications
+            </h2>
+          </div>
+
+          <a
+            href="/certifications"
+            class="hidden text-sm font-semibold text-red-500 hover:text-red-400 sm:block"
+          >
+            View all certifications →
+          </a>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2">
+          {certifications.slice(0, 4).map((cert) => (
+            <CertificationCard
+              name={cert.name}
+              issuer={cert.issuer}
+              date={cert.date}
+              credentialId={cert.credentialId}
+              verificationUrl={cert.verificationUrl}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ARTICLES -->
+    <section class="border-b border-zinc-900 bg-black py-24">
+      <div class="container mx-auto px-4 text-center">
+
+        <p class="cyber-label mb-3">// WRITING</p>
+
+        <h2 class="text-3xl font-bold text-white md:text-4xl">
+          Articles & insights
+        </h2>
+
+        <p class="mx-auto mt-4 max-w-2xl text-zinc-500">
+          Technical writing and perspectives on artificial intelligence,
+          cybersecurity, engineering, and technology.
+        </p>
+
+        <a
+          href="/articles"
+          class="mt-7 inline-flex font-semibold text-red-500 hover:text-red-400"
+        >
+          Explore articles →
+        </a>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="relative overflow-hidden bg-[#080808] py-28">
+      <div
+        class="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-red-600/10 blur-3xl"
+      ></div>
+
+      <div class="relative container mx-auto px-4 text-center">
+
+        <p class="cyber-label mb-4">// CONNECT</p>
+
+        <h2 class="mx-auto max-w-3xl text-4xl font-bold text-white md:text-5xl">
+          Building at the intersection of
+          <span class="text-red-500">intelligence and security.</span>
+        </h2>
+
+        <p class="mx-auto mt-5 max-w-2xl text-zinc-500">
+          Explore Samuel Mallo's professional background, accomplishments,
+          certifications, and technical journey.
+        </p>
+
+        <div class="mt-9 flex flex-wrap justify-center gap-3">
+          <a
+            href="/about"
+            class="cyber-button-outline"
+          >
+            About Samuel
+          </a>
+
+          <a
+            href="/contact"
+            class="cyber-button"
+          >
+            Get in Touch
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>

@@ -1,0 +1,224 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles"))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => {
+    const dateA = a.data.publishDate?.getTime() ?? 0;
+    const dateB = b.data.publishDate?.getTime() ?? 0;
+    return dateB - dateA;
+  });
+---
+
+<BaseLayout
+  title="Articles | Samuel Mallo"
+  description="Technical articles and insights from Samuel Mallo covering artificial intelligence, cybersecurity, systems, and technology."
+>
+  <main class="min-h-screen bg-black">
+
+    <!-- HEADER -->
+    <section class="relative overflow-hidden border-b border-red-500/20 bg-black">
+
+      <div class="absolute inset-0 cyber-grid opacity-30"></div>
+
+      <div
+        class="pointer-events-none absolute left-1/2 top-0 h-[450px] w-[700px] -translate-x-1/2 rounded-full bg-red-600/5 blur-3xl"
+      ></div>
+
+      <div class="relative container mx-auto px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+
+        <div class="max-w-4xl">
+
+          <p class="font-mono text-xs uppercase tracking-[0.3em] text-red-500">
+            // ARTICLE_DATABASE
+          </p>
+
+          <h1 class="mt-5 font-mono text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl">
+            Technical writing &amp; insights.
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+            Technical perspectives on artificial intelligence, cybersecurity,
+            systems engineering, research, and practical technology.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3 font-mono text-xs">
+
+            <span class="border border-green-500/20 bg-green-500/5 px-3 py-2 text-green-400">
+              STATUS: ONLINE
+            </span>
+
+            <span class="border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-500">
+              ARTICLES: {articles.length}
+            </span>
+
+            <span class="border border-zinc-800 bg-zinc-950 px-3 py-2 text-zinc-500">
+              ACCESS: PUBLIC
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ARTICLES -->
+    <section class="bg-[#080808] py-24">
+      <div class="container mx-auto px-4">
+
+        {articles.length > 0 ? (
+          <div class="grid gap-6 md:grid-cols-2">
+
+            {articles.map((article, index) => (
+
+              <a
+                href={`/articles/${article.slug}`}
+                class:list={[
+                  "group relative block overflow-hidden border border-zinc-800 bg-black p-7 transition-all duration-300",
+                  "hover:-translate-y-1 hover:border-red-500/50 hover:shadow-[0_0_35px_rgba(220,38,38,0.08)]",
+                  article.data.featured && "md:col-span-2",
+                ]}
+              >
+
+                <!-- Scan line -->
+                <div
+                  class="absolute left-0 top-0 h-px w-0 bg-red-500 transition-all duration-500 group-hover:w-full"
+                  aria-hidden="true"
+                ></div>
+
+                <!-- Corner -->
+                <div
+                  class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-red-500/20"
+                  aria-hidden="true"
+                ></div>
+
+                <!-- Metadata -->
+                <div class="flex flex-wrap items-center justify-between gap-4">
+
+                  <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-red-500">
+                    ARTICLE_{String(index + 1).padStart(3, "0")}
+                  </span>
+
+                  <span class="font-mono text-[10px] uppercase tracking-widest text-zinc-600">
+                    {article.data.category}
+                  </span>
+
+                </div>
+
+                <!-- Featured -->
+                {article.data.featured && (
+                  <div class="mt-4 inline-flex border border-green-500/20 bg-green-500/5 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-green-400">
+                    FEATURED
+                  </div>
+                )}
+
+                <!-- Title -->
+                <h2
+                  class:list={[
+                    "mt-6 font-mono font-bold tracking-tight text-white transition-colors group-hover:text-red-400",
+                    article.data.featured
+                      ? "text-2xl md:text-3xl"
+                      : "text-xl",
+                  ]}
+                >
+                  {article.data.title}
+                </h2>
+
+                <!-- Date -->
+                <p class="mt-3 font-mono text-xs text-zinc-600">
+                  {article.data.publishDate?.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+
+                <!-- Description -->
+                <p class="mt-5 max-w-3xl leading-7 text-zinc-400">
+                  {article.data.description}
+                </p>
+
+                <!-- Footer -->
+                <div class="mt-7 flex items-center justify-between border-t border-zinc-900 pt-4">
+
+                  <span class="font-mono text-[10px] text-zinc-700">
+                    STATUS: PUBLISHED
+                  </span>
+
+                  <span class="font-mono text-xs text-red-500/70 transition-colors group-hover:text-red-400">
+                    [ READ ARTICLE → ]
+                  </span>
+
+                </div>
+
+              </a>
+            ))}
+
+          </div>
+        ) : (
+
+          <!-- Empty state -->
+          <div class="mx-auto max-w-2xl border border-zinc-800 bg-black p-10 text-center">
+
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-red-500">
+              // DATABASE_EMPTY
+            </p>
+
+            <h2 class="mt-5 font-mono text-2xl font-bold text-white">
+              No articles published yet.
+            </h2>
+
+            <p class="mt-4 leading-7 text-zinc-500">
+              The article database is online, but no publications have been
+              indexed yet.
+            </p>
+
+            <p class="mt-6 font-mono text-xs text-green-500">
+              SYSTEM_READY_
+            </p>
+
+          </div>
+
+        )}
+
+      </div>
+    </section>
+
+
+    <!-- TERMINAL -->
+    <section class="border-t border-zinc-900 bg-black py-20">
+
+      <div class="container mx-auto px-4">
+
+        <div class="mx-auto max-w-3xl border border-zinc-800 bg-[#080808] p-6 font-mono text-sm">
+
+          <p class="text-zinc-600">
+            samuel@mallo:~/articles$
+          </p>
+
+          <p class="mt-3 text-zinc-400">
+            <span class="text-red-500">&gt;</span>
+            Article database initialized.
+          </p>
+
+          <p class="mt-2 text-zinc-400">
+            <span class="text-red-500">&gt;</span>
+            {articles.length} publication(s) indexed.
+          </p>
+
+          <p class="mt-2 text-green-400">
+            <span class="text-green-500">&gt;</span>
+            READY_FOR_INPUT_
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+</BaseLayout>

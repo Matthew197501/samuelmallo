@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection(
+    "projects",
+    ({ data }) => !data.draft
+  );
+
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  title={`${project.data.title} | Samuel Mallo`}
+  description={project.data.description}
+  type="website"
+>
+  <main class="min-h-screen bg-black">
+
+    <!-- HEADER -->
+    <section class="relative overflow-hidden border-b border-red-500/20 bg-black">
+
+      <div class="absolute inset-0 cyber-grid opacity-30"></div>
+
+      <div
+        class="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[700px]
+        -translate-x-1/2 rounded-full bg-red-600/5 blur-3xl"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative container mx-auto px-4 py-20 sm:px-6 md:py-28 lg:px-8">
+
+        <a
+          href="/projects"
+          class="font-mono text-xs text-red-500 transition-colors hover:text-red-400"
+        >
+          ← BACK_TO_PROJECTS
+        </a>
+
+        <div class="mt-10 max-w-4xl">
+
+          <p class="font-mono text-xs uppercase tracking-[0.3em] text-red-500">
+            // PROJECT_MODULE
+          </p>
+
+          <h1
+            class="mt-5 font-mono text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl"
+          >
+            {project.data.title}
+          </h1>
+
+          <p class="mt-6 max-w-3xl text-lg leading-8 text-zinc-400">
+            {project.data.description}
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+
+            {project.data.technologies.map((technology) => (
+              <span
+                class="border border-zinc-800 bg-zinc-950 px-3 py-2 font-mono text-xs text-zinc-400"
+              >
+                {technology}
+              </span>
+            ))}
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- PROJECT CONTENT -->
+    <section class="border-b border-zinc-900 bg-[#080808] py-24">
+
+      <div class="container mx-auto px-4">
+
+        <div class="mx-auto max-w-4xl">
+
+          <article class="prose prose-invert prose-zinc max-w-none">
+
+            <Content />
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROJECT METADATA -->
+    <section class="border-b border-zinc-900 bg-black py-20">
+
+      <div class="container mx-auto px-4">
+
+        <div class="mx-auto max-w-4xl">
+
+          <div class="grid gap-6 sm:grid-cols-2">
+
+            {project.data.role && (
+              <div class="border border-zinc-800 bg-[#080808] p-6">
+                <p class="cyber-label mb-3">
+                  // ROLE
+                </p>
+
+                <p class="font-mono text-sm text-zinc-300">
+                  {project.data.role}
+                </p>
+              </div>
+            )}
+
+            {project.data.publishDate && (
+              <div class="border border-zinc-800 bg-[#080808] p-6">
+                <p class="cyber-label mb-3">
+                  // PUBLISHED
+                </p>
+
+                <p class="font-mono text-sm text-zinc-300">
+                  {project.data.publishDate.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </p>
+              </div>
+            )}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TERMINAL -->
+    <section class="bg-[#080808] py-20">
+
+      <div class="container mx-auto px-4">
+
+        <div class="mx-auto max-w-3xl border border-zinc-800 bg-black p-6 font-mono text-sm">
+
+          <p class="text-zinc-600">
+            samuel@mallo:~/projects/{project.slug}$
+          </p>
+
+          <p class="mt-3 text-zinc-400">
+            <span class="text-red-500">&gt;</span>
+            Project module loaded successfully.
+          </p>
+
+          <p class="mt-2 text-green-400">
+            <span class="text-green-500">&gt;</span>
+            SYSTEM READY_
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+</BaseLayout>

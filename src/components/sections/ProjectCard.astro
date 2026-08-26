@@ -1,0 +1,127 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  technologies: string[];
+  slug: string;
+  featured?: boolean;
+}
+
+const {
+  title,
+  description,
+  technologies,
+  slug,
+  featured = false,
+} = Astro.props;
+
+const systemId = title
+  .toUpperCase()
+  .replace(/[^A-Z0-9]+/g, "_")
+  .replace(/^_+|_+$/g, "");
+---
+
+<article
+  class:list={[
+    "group relative overflow-hidden border border-zinc-800 bg-[#080808] p-6 transition-all duration-300",
+    "hover:-translate-y-1 hover:border-red-500/60 hover:shadow-[0_0_35px_rgba(220,38,38,0.08)]",
+    featured && "md:p-8",
+  ]}
+>
+  <!-- Top scan line -->
+  <div
+    class="absolute left-0 top-0 h-px w-0 bg-red-500 transition-all duration-500 group-hover:w-full"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Corner decorations -->
+  <div
+    class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-red-500/20"
+    aria-hidden="true"
+  ></div>
+
+  <div
+    class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-red-500/10"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Header -->
+  <div class="flex items-start justify-between gap-4">
+    <div>
+      <p
+        class="font-mono text-[10px] uppercase tracking-[0.25em] text-zinc-600"
+      >
+        // PROJECT
+      </p>
+
+      <p
+        class="mt-1 font-mono text-xs font-bold uppercase tracking-widest text-red-500"
+      >
+        TECHNICAL_PROJECT
+      </p>
+    </div>
+
+    <span
+      class="shrink-0 border border-green-500/20 bg-green-500/5 px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-green-400"
+    >
+      ACTIVE
+    </span>
+  </div>
+
+  <!-- Identity -->
+  <div class="mt-7">
+    <p class="font-mono text-xs text-zinc-600">
+      SYSTEM_ID:
+      <span class="text-zinc-400">{systemId}</span>
+    </p>
+
+    <h2
+      class:list={[
+        "mt-2 font-mono font-bold tracking-tight text-white",
+        featured ? "text-2xl md:text-3xl" : "text-xl",
+      ]}
+    >
+      {title}
+    </h2>
+  </div>
+
+  <!-- Description -->
+  <p class="mt-5 leading-7 text-zinc-400">
+    {description}
+  </p>
+
+  <!-- Technologies -->
+  <div class="mt-6 border-t border-zinc-900 pt-5">
+    <p
+      class="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-600"
+    >
+      TECHNOLOGIES
+    </p>
+
+    <div class="flex flex-wrap gap-2">
+      {technologies.map((technology) => (
+        <span
+          class="border border-zinc-800 bg-black px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-zinc-500 transition-colors group-hover:border-zinc-700 group-hover:text-zinc-300"
+        >
+          {technology}
+        </span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div
+    class="mt-7 flex items-center justify-between border-t border-zinc-900 pt-4"
+  >
+    <span class="font-mono text-[10px] text-zinc-700">
+      ACCESS_LEVEL: PUBLIC
+    </span>
+
+    <a
+      href={`/projects/${slug}`}
+      class="font-mono text-xs text-red-500/60 transition-colors group-hover:text-red-400"
+    >
+      [ VIEW MODULE → ]
+    </a>
+  </div>
+</article>

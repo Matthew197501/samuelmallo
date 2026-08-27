@@ -176,5 +176,90 @@ const articleSchema = seo.article
       <slot />
     </div>
     <Footer />
+    <audio id="site-startup-sound" preload="auto">
+  <source src="/sounds/startup.mp3" type="audio/mpeg" />
+</audio>
+
+<button
+  id="sound-toggle"
+  type="button"
+  aria-label="Enable website sound"
+  title="Enable website sound"
+  class="fixed bottom-5 right-5 z-50 rounded-full border border-slate-300/50 bg-white/80 px-3 py-2 text-sm shadow-lg backdrop-blur transition hover:scale-105 dark:border-slate-700/50 dark:bg-slate-900/80"
+>
+  🔇
+</button>
+
+<script>
+  const audio = document.getElementById(
+    "site-startup-sound"
+  ) as HTMLAudioElement | null;
+
+  const toggle = document.getElementById(
+    "sound-toggle"
+  ) as HTMLButtonElement | null;
+
+  if (audio && toggle) {
+    let soundEnabled = localStorage.getItem("site-sound") !== "off";
+    let hasPlayed = false;
+
+    const updateButton = () => {
+      toggle.textContent = soundEnabled ? "🔊" : "🔇";
+      toggle.setAttribute(
+        "aria-label",
+        soundEnabled ? "Disable website sound" : "Enable website sound"
+      );
+      toggle.title = soundEnabled
+        ? "Disable website sound"
+        : "Enable website sound";
+    };
+
+    const playStartupSound = async () => {
+      if (!soundEnabled || hasPlayed) return;
+
+      try {
+        audio.currentTime = 0;
+        await audio.play();
+        hasPlayed = true;
+      } catch {
+        // Browser blocked playback until interaction.
+      }
+    };
+
+    const enableOnInteraction = () => {
+      playStartupSound();
+      window.removeEventListener("pointerdown", enableOnInteraction);
+      window.removeEventListener("keydown", enableOnInteraction);
+    };
+
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      soundEnabled = !soundEnabled;
+
+      localStorage.setItem(
+        "site-sound",
+        soundEnabled ? "on" : "off"
+      );
+
+      updateButton();
+
+      if (soundEnabled) {
+        hasPlayed = false;
+        playStartupSound();
+      }
+    });
+
+    window.addEventListener("pointerdown", enableOnInteraction, {
+      once: true,
+    });
+
+    window.addEventListener("keydown", enableOnInteraction, {
+      once: true,
+    });
+
+    updateButton();
+  }
+</script>
   </body>
 </html>
